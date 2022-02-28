@@ -12,13 +12,17 @@
 <body>
     <form>
         <label for="nome">Nome: </label>
-        <input type="text" name="nome">
+        <input type="text" id="name" name="nome">
         <label for="nmr">Número: </label>
-        <input type="text" name="nmr">
-        <button type="button" onclick="submit">Manda bala</button>
+        <input type="text" id="phone" name="nmr">
+        <button type="submit">Salvar</button>
     </form>
     <span id="result"></span>
-    <script type="text/javascript" src="./form.js"></script>
+
+
+    <script>
+        window.api.loadscript('./form.js');
+    </script>
 </body>
 
 </html>
