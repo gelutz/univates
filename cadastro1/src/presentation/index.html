@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electron uhu</title>
+
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/form.css">
+</head>
+
+<body>
+    <main>
+        <div class="window">
+            <div class="title">Cadastro Simples</div>
+            <form>
+                <div class="campo">
+                    <label for="nome">Nome: </label>
+                    <input type="text" id="name" name="nome">
+                </div>
+                <div class="campo">
+                    <label for="phone">Número: </label>
+                    <input type="text" id="phone" name="phone">
+                </div>
+                <button type="submit">Salvar</button>
+            </form>
+            <span id="returned"></span>
+        </div>
+    </main>
+
+    <script>
+        window.api.loadscript('core/form.js');
+    </script>
+</body>
+
+</html>

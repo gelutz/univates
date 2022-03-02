@@ -1,0 +1,6 @@
+[x] classe Contato (infra) para modelar a estrutura do objeto
+[x] classe ContatoDAO (core) para salvar e os caraio o objeto contato
+[x] funções helpers (ainda não sei onde colocar essas funções) que chamam o ipcMain e ipcRenderer para salvar e os caraio
+
+[ ] Cadastro com campos para input de nome e telefone
+[ ] Dados salvos em um arquivo texto

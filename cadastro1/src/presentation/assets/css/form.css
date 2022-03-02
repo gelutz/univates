@@ -1,0 +1,18 @@
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form .campo {
+    padding-top: 1em;
+}
+
+form button {
+    margin-top: 2em;
+}
+
+#returned {
+    display: flex;
+    justify-content: center;
+    margin-top: 3em
+}

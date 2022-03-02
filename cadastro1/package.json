@@ -1,13 +1,13 @@
 {
   "name": "cadastro",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "src/app.js",
   "license": "MIT",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "clean": "rm -rf out/*"
+    "clean": "rm -rf *.log"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.63",
