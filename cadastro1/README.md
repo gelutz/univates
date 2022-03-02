@@ -27,7 +27,7 @@ Rodando projeto: `yarn start`
 
 ![Arquivo .log onde fica salvo o contato](https://github.com/gelutz/univates-aplicacoes/blob/main/cadastro1/screenshots/screenshot-4.png?raw=true)
 
-## Referências:
+<!-- ## Referências:
 [Intro to Electron.js - Part 2: Todo App](https://www.digitalocean.com/community/tutorials/electron-intro-to-electron-todo-app)
 [Build a Todo App with Electron](https://codeburst.io/build-a-todo-app-with-electron-d6c61f58b55a)
-[Pdf reports in Electron app](https://jsreport.net/blog/pdf-reports-in-electron-app)
+[Pdf reports in Electron app](https://jsreport.net/blog/pdf-reports-in-electron-app) -->
