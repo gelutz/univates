@@ -19,7 +19,6 @@ app.whenReady().then(() => {
     // carrega o arquivo da página
     win.loadFile(path.join(__dirname, 'presentation', 'index.html'))
 
-    // fecha o app
     app.on('closed', () => app.quit())
 })
 

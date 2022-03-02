@@ -1,5 +1,6 @@
 {
   "name": "cadastro",
+  "description": "Cadastro Simples",
   "version": "1.0.0",
   "main": "src/app.js",
   "license": "MIT",
@@ -27,22 +28,23 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "cadastro"
+            "name": "cadastro",
+            "description": "Cadastro simples"
           }
         },
         {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
           "name": "@electron-forge/maker-deb",
-          "config": {}
+          "config": {
+            "name": "cadastro",
+            "description": "Cadastro simples"
+          }
         },
         {
           "name": "@electron-forge/maker-rpm",
-          "config": {}
+          "config": {
+            "name": "cadastro",
+            "description": "Cadastro simples"
+          }
         }
       ]
     }
