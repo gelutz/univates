@@ -1,0 +1,45 @@
+version: '3.2'
+
+services:
+  database:
+    image: postgres:alpine
+    container_name: postgres-db
+    restart: unless-stopped
+
+    networks:
+      rede-falconsl:
+        ipv4_address: 10.0.0.10
+    ports:
+      - 5433:5432
+    volumes:
+      - data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+    links:
+      - pgadmin
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: postgres-pgadmin
+    restart: unless-stopped
+    networks:
+      rede-falconsl:
+        ipv4_address: 10.0.0.11
+    ports:
+      - 8080:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: postgres@email.com
+      PGADMIN_DEFAULT_PASSWORD: postgres
+
+networks:
+  rede-falconsl:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.0.1/24
+
+volumes:
+  data:

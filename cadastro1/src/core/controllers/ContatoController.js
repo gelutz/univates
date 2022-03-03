@@ -1,9 +1,8 @@
 const Contato = require('../../infra/classes/Contato');
-const { saveToFile } = require('../helpers/saveToFile')
+const File = require('../database/File')
+const { connect } = require('../database/Connection')
 
 class ContatoController {
-    static method = 'file'
-
     static salvar(data) {
         if (!data.name) {
             return 'Erro. Nome é obrigatório.'
@@ -11,14 +10,9 @@ class ContatoController {
 
         let contato = new Contato(data.name, data.phone)
 
-        switch (ContatoController.method) {
-            case 'file':
-                ContatoController.salvarEmArquivo(contato)
-                break;
-
-            default:
-                break;
-        }
+        connect().then((client) => {
+            client.query('SELECT NOW()').then(console.log)
+        })
 
         return `Olá, ${data.name}`
     }
@@ -27,7 +21,7 @@ class ContatoController {
         let time = new Date()
         let data = `name=${contato.name};phone=${contato.phone};timestamp=${time.getTime()}`
         let filename = `${contato.name}-${time.getTime().toString().slice(0, 3)}`
-        saveToFile(filename, data)
+        File.save(filename, data)
     }
 }
 

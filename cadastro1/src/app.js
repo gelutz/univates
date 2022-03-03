@@ -1,7 +1,7 @@
 const path = require('path')
 const { app, BrowserWindow } = require('electron')
 
-const events = require('./core/events')
+const events = require('./core/Events')
 
 // arquivo inicial, que inicia o app e carrega os eventos (rotas)
 app.whenReady().then(() => {

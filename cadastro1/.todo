@@ -1,6 +1,11 @@
-[x] classe Contato (infra) para modelar a estrutura do objeto
-[x] classe ContatoDAO (core) para salvar e os caraio o objeto contato
-[x] funções helpers (ainda não sei onde colocar essas funções) que chamam o ipcMain e ipcRenderer para salvar e os caraio
+v1.0:
+    [x] classe Contato (infra) para modelar a estrutura do objeto
+    [x] classe ContatoDAO (core) para salvar e os caraio o objeto contato
+    [x] funções helpers (ainda não sei onde colocar essas funções) que chamam o ipcMain e ipcRenderer para salvar e os caraio
+    [x] Cadastro com campos para input de nome e telefone
+    [x] Dados salvos em um arquivo texto
 
-[ ] Cadastro com campos para input de nome e telefone
-[ ] Dados salvos em um arquivo texto
+v2.0:
+
+    [ ] Classe Connection para iniciar conexão com o banco
+    [ ] Funções de select/insert/update/delete para a classe de Contato
