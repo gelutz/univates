@@ -8,7 +8,9 @@
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "clean": "rm -rf *.log"
+    "clean": "rm -rf *.log && rm -rf out/*",
+    "up": "docker compose -f docker/docker-compose.yml up -d",
+    "down": "docker compose -f docker/docker-compose.yml down"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.63",
@@ -19,6 +21,7 @@
     "electron": "^17.1.0"
   },
   "dependencies": {
+    "debug": "^4.3.3",
     "dotenv": "^16.0.0",
     "electron-squirrel-startup": "^1.0.0",
     "pg": "^8.7.3"
