@@ -1,0 +1,57 @@
+{
+  "name": "lutz-to-do",
+  "description": "To-do do Lutz",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "yarn run build && electron-forge start dist/",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "lint": "eslint -c .eslintrc --ext .ts ./src"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.63",
+    "@electron-forge/maker-deb": "^6.0.0-beta.63",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.63",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
+    "@electron-forge/maker-zip": "^6.0.0-beta.63",
+    "@types/node": "^17.0.21",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "electron": "^17.1.0",
+    "eslint": "^7.32.0",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "cadastro",
+            "description": "Cadastro simples"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {
+            "name": "cadastro",
+            "description": "Cadastro simples"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {
+            "name": "cadastro",
+            "description": "Cadastro simples"
+          }
+        }
+      ]
+    }
+  }
+}
