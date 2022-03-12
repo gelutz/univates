@@ -1,7 +1,10 @@
 CREATE DATABASE aplicacoes;
 
-CREATE TABLE contatos (
-    id primary key
-    name varchar(100) NOT NULL
-    phone varchar(11) 
+
+
+CREATE TABLE IF NOT EXISTS contatos (
+    id int primary key,
+    name varchar(100) NOT NULL,
+    phone varchar(11)
 )
+
