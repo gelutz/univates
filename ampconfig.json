@@ -1,0 +1,19 @@
+{
+  "dataServiceGeneratorVersion": "0.12.1",
+  "appInfo": {
+    "name": "Todo do Lutz",
+    "description": "Todos",
+    "version": "g8xwodqo",
+    "id": "cl10w9svb31379001s66f3bmp3j",
+    "url": "https://app.amplication.com/cl10w9svb31379001s66f3bmp3j",
+    "settings": {
+      "dbHost": "localhost",
+      "dbName": "tododolutz",
+      "dbPassword": "postgres",
+      "dbPort": 5432,
+      "dbUser": "postgres",
+      "appId": "cl10w9svb31379001s66f3bmp3j",
+      "authProvider": "Jwt"
+    }
+  }
+}
