@@ -1,4 +1,5 @@
-**/node_modules/
-*.log
-**/out/
-**/electron-*
+**/node_modules
+**/dist
+**/out
+
+aplicacoes/electron-quick-start-typescript
