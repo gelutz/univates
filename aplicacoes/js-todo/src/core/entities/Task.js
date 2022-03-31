@@ -1,43 +1,47 @@
-module.exports = {
-    id: {
+module.exports = class Task {
+    id = {
         required: true,
         type: 'number'
-    },
+    }
 
-    title: {
+    title = {
         required: true,
         type: 'string'
-    },
+    }
 
-    description: {
+    description = {
         required: false,
         type: 'string'
-    },
+    }
 
-    due_date: {
+    due_date = {
         required: false,
         type: 'object'
-    },
+    }
 
-    done: {
+    done = {
         required: true,
         default: () => false,
         type: 'boolean'
-    },
+    }
 
-    created_at: {
+    created_at = {
         required: true,
         default: () => new Date(),
         type: 'object'
-    },
+    }
 
-    deleted_at: {
+    deleted_at = {
         required: false,
         type: 'object'
-    },
+    }
 
-    completed_at: {
+    completed_at = {
         required: false,
         type: 'object'
-    },
+    }
+
+    constructor({ ...task }) {
+        Object.assign(this, task)
+    }
 }
