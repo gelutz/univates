@@ -1,10 +1,13 @@
-CREATE DATABASE aplicacoes;
+CREATE DATABASE tododb;
+\c tododb
 
-
-
-CREATE TABLE IF NOT EXISTS contatos (
+CREATE TABLE IF NOT EXISTS task (
     id int primary key,
-    name varchar(100) NOT NULL,
-    phone varchar(11)
-)
-
+    title varchar(100) NOT NULL,
+    description text,
+    due_date TIMESTAMP WITH TIME ZONE,
+    done BOOLEAN,
+    created_at DATE,
+    deleted_at DATE,
+    completed_at DATE
+);

@@ -5,7 +5,7 @@ services:
     image: postgres:alpine
     container_name: postgres-db
     restart: unless-stopped
-
+    user: postgres
     networks:
       rede-psql:
         ipv4_address: 10.0.0.10
@@ -21,17 +21,18 @@ services:
   postgres-setup:
     image: postgres:alpine
     container_name: postres-setup
-    restart: "no"
-    depends_on:
-      - postgres
     networks:
       rede-psql:
+        ipv4_address: 10.0.0.12
+    depends_on:
+      - postgres
     volumes:
-      - ./:/app
-    entrypoint:
+      - .:/app
+    entrypoint: [ "sh" ]
+    command:
       [
-        "bash -c",
-        "sleep 5 && psql postgresql://postgres:postgres@10.0.0.10 < /app/createDB.sql"
+        "-c",
+        "sleep 5 && psql 'postgresql://postgres:postgres@10.0.0.10:5432' < /app/createDB.sql"
       ]
 
   pgadmin:
