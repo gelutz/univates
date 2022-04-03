@@ -1,6 +1,6 @@
 const TaskDAO = require("../core/daos/TaskDAO");
-const Task = require("../core/entities/Task");
-const TError = require('../core/errors/TError')
+const Task = require("../domain/entities/Task");
+const TError = require('../interface/errors/TError')
 
 describe('TaskDAO functionalities', () => {
     it('should create Task from object with title', () => {
@@ -19,11 +19,8 @@ describe('TaskDAO functionalities', () => {
 
         } catch (error) {
             expect(error).toBeInstanceOf(TError)
-            if (error instanceof TError) {
-                continue
-            }
 
-            else throw error
+            throw error
         }
     })
 })

@@ -1,4 +1,4 @@
-const TError = require("../errors/TError")
+const TError = require("../../interface/errors/TError")
 
 module.exports = class DAO {
     fields = {}

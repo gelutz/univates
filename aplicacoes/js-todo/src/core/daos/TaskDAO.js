@@ -1,4 +1,4 @@
-const Task = require("../entities/Task")
+const Task = require("../../domain/entities/Task")
 const DAO = require("./DAO")
 
 class TaskDAO extends DAO {

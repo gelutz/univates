@@ -1,10 +1,8 @@
-module.exports = {
-    connect(pool) {
-        if (global.connection) {
-            return global.connection.connect();
-        }
+const postgresAdapter = require("./adapters/postgres")
 
-        global.connection = pool;
-        return pool.connect();
-    }
+module.exports = {
+    postgres: () => postgresAdapter
+
+    // other connections
 }
+
