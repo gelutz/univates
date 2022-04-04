@@ -1,23 +1,22 @@
 const { Pool } = require('pg');
 const { DB } = require('../../config');
-const DatabaseAdapter = require('./adapter');
 
-class Postgres extends DatabaseAdapter {
+class Postgres {
+    pool
     constructor() {
-        super()
-        if (!this.connection) {
+        if (!this.pool) {
             const connectionString =
                 `postgres://${DB.USER}:${DB.PASSWORD}@${DB.HOST}:${DB.PORT}/${DB.DATABASE}`
             try {
-                this.connection = new Pool(connectionString)
+                this.pool = new Pool(connectionString)
             } catch (error) {
                 return
             }
         }
 
-        return this.connection.connect()
+        return this.pool
     }
 }
 
-module.exports = new Postgres()
+module.exports = { Postgres: new Postgres() }
 
