@@ -1,6 +1,7 @@
 const ERRORS = {
     'type-mismatch': 'Property type does not match entity\'s type',
-    'required-field': 'Field is missing from object'
+    'required-field': 'Field is missing from object',
+    'fuck-up': 'You fucked up somewhere'
 }
 
 module.exports = class TError extends Error {

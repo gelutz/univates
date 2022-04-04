@@ -1,7 +1,7 @@
 CREATE DATABASE tododb;
 \c tododb
 
-CREATE TABLE IF NOT EXISTS task (
+CREATE TABLE IF NOT EXISTS tasks (
     id int primary key,
     title varchar(100) NOT NULL,
     description text,
