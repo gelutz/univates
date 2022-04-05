@@ -1,5 +1,5 @@
-import { contextBridge } from 'electron'
-import * as path from 'path';
+const { contextBridge } = require('electron')
+const path = require('path')
 
 
 contextBridge.exposeInMainWorld("api", {

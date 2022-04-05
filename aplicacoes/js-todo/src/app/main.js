@@ -1,7 +1,7 @@
-import { app, BrowserWindow } from "electron";
-import path from "path";
+const { app, BrowserWindow } = require("electron");
+const path = require("path");
 
-import { loadEvents } from "./core/routes";
+// const { loadEvents } = require("./core/routes");
 
 function createWindow() {
     // Create the browser window.
@@ -9,14 +9,15 @@ function createWindow() {
         height: 600,
         webPreferences: {
             preload: path.join(__dirname, "preload.js"),
+            contextIsolation: true,
         },
         width: 800,
     });
 
     // and load the index.html of the app.
-    mainWindow.loadFile(path.join(__dirname, "./index.html"));
+    mainWindow.loadFile(path.join(__dirname, "presentation/index.js"));
 
-    loadEvents(mainWindow)
+    // loadEvents(mainWindow)
 }
 
 app.on("ready", () => {

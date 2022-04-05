@@ -1,57 +1,13 @@
 {
-  "name": "cadastro",
-  "description": "Cadastro Simples",
-  "version": "1.0.0",
-  "main": "src/app.js",
-  "license": "MIT",
-  "scripts": {
-    "start": "yarn up; electron-forge start",
-    "make": "electron-forge make",
-    "test": "jest",
-    "up": "docker compose -f docker/docker-compose.yml up -d",
-    "down": "docker compose -f docker/docker-compose.yml down --volumes",
-    "logs": "docker compose -f docker/docker-compose.yml logs -f"
-  },
-  "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.63",
-    "@electron-forge/maker-deb": "^6.0.0-beta.63",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.63",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
-    "@electron-forge/maker-zip": "^6.0.0-beta.63",
-    "electron": "^17.1.0"
-  },
-  "dependencies": {
-    "dotenv": "^16.0.0",
-    "electron-squirrel-startup": "^1.0.0",
-    "jest": "^27.5.1",
-    "pg": "^8.7.3"
-  },
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "cadastro",
-            "description": "Cadastro simples"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {
-            "name": "cadastro",
-            "description": "Cadastro simples"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {
-            "name": "cadastro",
-            "description": "Cadastro simples"
-          }
-        }
-      ]
+    "dependencies": {
+        "client": "file:src/client",
+        "server": "file:src/server",
+        "app": "file:src/app"
+    },
+    "scripts": {
+        "start": "make install && make start",
+        "up": "docker compose -f docker/docker-compose.yml up -d",
+        "down": "docker compose -f docker/docker-compose.yml down --volumes",
+        "logs": "docker compose -f docker/docker-compose.yml logs -f"
     }
-  }
 }

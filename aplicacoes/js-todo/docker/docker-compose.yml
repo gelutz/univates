@@ -1,14 +1,33 @@
-version: '3.2'
+version: "3.7"
 
 services:
-  postgres:
+  server:
+    build:
+      context: ../src/server/
+      target: development
+    container_name: server
+    networks:
+      rede-psql:
+        ipv4_address: 10.0.0.11
+    env_file:
+      - ../src/server/.env
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+    volumes:
+      - ../src/server/src:/usr/app/server/src
+    command: [ "npm", "run", "dev" ]
+
+  ##
+  db:
     image: postgres:alpine
-    container_name: postgres-db
+    container_name: db
     restart: unless-stopped
     user: postgres
     networks:
       rede-psql:
-        ipv4_address: 10.0.0.10
+        ipv4_address: 10.0.0.20
     ports:
       - 5433:5432
     volumes:
@@ -17,23 +36,25 @@ services:
       POSTGRES_PASSWORD: postgres
     links:
       - pgadmin
+    profiles: [ "database" ]
 
   postgres-setup:
     image: postgres:alpine
     container_name: postres-setup
     networks:
       rede-psql:
-        ipv4_address: 10.0.0.12
+        ipv4_address: 10.0.0.20
     depends_on:
-      - postgres
+      - db
     volumes:
       - .:/app
     entrypoint: [ "sh" ]
     command:
       [
         "-c",
-        "sleep 5 && psql 'postgresql://postgres:postgres@10.0.0.10:5432' < /app/createDB.sql"
+        "sleep 5 && psql 'postgresql://postgres:postgres@10.0.0.20:5432' < /app/createDB.sql"
       ]
+    profiles: [ "database" ]
 
   pgadmin:
     image: dpage/pgadmin4
@@ -41,12 +62,38 @@ services:
     restart: unless-stopped
     networks:
       rede-psql:
-        ipv4_address: 10.0.0.11
+        ipv4_address: 10.0.0.21
     ports:
       - 8080:80
     environment:
       PGADMIN_DEFAULT_EMAIL: postgres@email.com
       PGADMIN_DEFAULT_PASSWORD: postgres
+    profiles: [ "database" ]
+
+  ##
+  client:
+    build:
+      context: ../src/client
+      target: development
+    container_name: client
+    networks:
+      rede-psql:
+        ipv4_address: 10.0.0.10
+    env_file:
+      - ../.env
+    depends_on:
+      - server
+    ports:
+      - 3333:3333
+    volumes:
+      - /app/client/node_modules
+      - ../src/client/:/usr/app/client/
+    command: [ "npm", "run", "start" ]
+    environment:
+      CHOKIDAR_USEPOLLING: "true" # seems like this enables hot reloading https://stackoverflow.com/questions/44643045/running-development-server-with-create-react-app-inside-of-a-docker-container
+    links:
+      - server
+##
 
 networks:
   rede-psql:
@@ -59,4 +106,6 @@ networks:
         - subnet: 10.0.0.1/24
 
 volumes:
+  postgres:
+
   data:
