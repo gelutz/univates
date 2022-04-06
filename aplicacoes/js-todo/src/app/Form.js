@@ -7,7 +7,7 @@ let form = document.querySelector('form')
 
 form.addEventListener('submit', e => {
     e.preventDefault()
-    ipcRenderer.send('send@form', { name: name.value, phone: phone.value })
+    ipcRenderer.send('test@server', { name: name.value, phone: phone.value })
     form.reset()
 })
 

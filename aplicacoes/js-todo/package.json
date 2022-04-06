@@ -1,8 +1,10 @@
 {
     "dependencies": {
+        "@app/todo": "link:src/app",
+        "@client/todo": "link:src/client",
+        "app": "file:src/app",
         "client": "file:src/client",
-        "server": "file:src/server",
-        "app": "file:src/app"
+        "server": "link:src/server"
     },
     "scripts": {
         "start": "make install && make start",

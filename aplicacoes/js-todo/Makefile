@@ -8,10 +8,8 @@ install:
 
 .PHONY: start
 start:
-	yarn up \
-	cd src/app && yarn start && cd - \
-	cd src/client && yarn start && cd - \
-	cd src/server && yarn start && cd -
+	# yarn up \
+	cd src/client && yarn start;	cd src/server && yarn start; cd src/app && yarn start;
 
 .PHONY: database
 database:

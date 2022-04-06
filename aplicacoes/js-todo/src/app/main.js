@@ -15,8 +15,8 @@ function createWindow() {
     });
 
     // and load the index.html of the app.
-    mainWindow.loadFile(path.join(__dirname, "presentation/index.js"));
-
+    mainWindow.url
+    mainWindow.loadURL('http://localhost:3333')
     // loadEvents(mainWindow)
 }
 
