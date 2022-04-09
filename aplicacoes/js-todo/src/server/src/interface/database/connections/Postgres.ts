@@ -1,8 +1,8 @@
-const { Client } = require('pg');
-const { DB } = require('../../config');
+import { Client, Connection, Pool } from 'pg';
+import { DB } from '../../config';
 
 class Postgres {
-    client
+    client: Client
     constructor() {
         if (!this.client) {
             const connectionOptions = {
@@ -17,23 +17,19 @@ class Postgres {
         }
     }
 
-    connect() {
+    connect(): Promise<void> {
         return new Promise((resolve, reject) => {
-            this.client.connect().then(connection => {
-                resolve(connection)
-            }).catch(error => {
-                reject(error)
-            })
+            this.client.connect().then(resolve).catch(reject)
         })
     }
 
-    rawQuery(sql) {
+    rawQuery(sql: string) {
         return this.client.query(sql)
             .then(result => result.rows)
             .catch(err => err.stack)
     }
 
-    query(sql, values) {
+    query(sql: string, values: any[]) {
         return this.client.query(sql, values)
             .then(result => result.rows)
             .catch(err => err.stack)

@@ -1,10 +1,11 @@
 {
+    "name": "todo",
+    "version": "1.0.0",
+    "license": "MIT",
     "dependencies": {
-        "@app/todo": "link:src/app",
-        "@client/todo": "link:src/client",
-        "app": "file:src/app",
-        "client": "file:src/client",
-        "server": "link:src/server"
+        "@todo/app": "link:src/app",
+        "@todo/client": "link:src/client",
+        "@todo/server": "link:src/server"
     },
     "scripts": {
         "start": "make install && make start",

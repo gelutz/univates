@@ -1,15 +1,11 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@app/todo': link:src/app
-  '@client/todo': link:src/client
-  app: file:src/app
-  client: file:src/client
-  server: link:src/server
+  '@todo/app': link:src/app
+  '@todo/client': link:src/client
+  '@todo/server': link:src/server
 
 dependencies:
-  '@app/todo': link:src/app
-  '@client/todo': link:src/client
-  app: link:src/app
-  client: link:src/client
-  server: link:src/server
+  '@todo/app': link:src/app
+  '@todo/client': link:src/client
+  '@todo/server': link:src/server

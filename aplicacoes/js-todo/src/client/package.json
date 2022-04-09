@@ -1,6 +1,5 @@
 {
-  "name": "@client/todo",
-  "private": true,
+  "name": "@todo/client",
   "version": "0.0.0",
   "scripts": {
     "start": "vite",

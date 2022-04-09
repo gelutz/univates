@@ -1,37 +1,43 @@
-module.exports = class Task {
-    id = {
+type Field = {
+    required: boolean
+    type: 'string' | 'string' | 'object' | 'boolean' | 'number'
+    default?: () => Date | boolean
+}
+
+export class Task {
+    id: Field = {
         required: true,
         type: 'number'
     }
 
-    title = {
+    title: Field = {
         required: true,
         type: 'string'
     }
 
-    description = {
+    description: Field = {
         required: false,
         type: 'string'
     }
 
-    due_date = {
+    due_date: Field = {
         required: false,
         type: 'object'
     }
 
-    done = {
+    done: Field = {
         required: true,
         default: () => false,
         type: 'boolean'
     }
 
-    created_at = {
+    created_at: Field = {
         required: true,
         default: () => new Date(),
         type: 'object'
     }
 
-    deleted_at = {
+    deleted_at: Field = {
         required: false,
         type: 'object'
     }
@@ -39,9 +45,5 @@ module.exports = class Task {
     completed_at = {
         required: false,
         type: 'object'
-    }
-
-    constructor({ ...task }) {
-        Object.assign(this, task)
     }
 }
