@@ -16,7 +16,7 @@ function createWindow() {
 
     // and load the index.html of the app.
     mainWindow.url
-    mainWindow.loadURL('http://localhost:3333')
+    mainWindow.loadURL('http://10.0.0.10:3333')
     // loadEvents(mainWindow)
 }
 

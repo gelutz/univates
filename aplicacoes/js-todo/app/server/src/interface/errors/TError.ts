@@ -4,9 +4,9 @@ const ERRORS = {
     'fuck-up': 'You fucked up somewhere'
 }
 
-module.exports = class TError extends Error {
+export class TError extends Error {
     data = {}
-    constructor(name, data) {
+    constructor(name: keyof typeof ERRORS, data: any) {
         super()
         if (!Object.keys(ERRORS).includes(name)) return
         this.message = ERRORS[name]

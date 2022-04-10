@@ -1,5 +1,6 @@
-import { Client, Connection, Pool } from 'pg';
+import { Client } from 'pg';
 import { DB } from '../../config';
+import { TError } from '../../errors/TError';
 
 class Postgres {
     client: Client

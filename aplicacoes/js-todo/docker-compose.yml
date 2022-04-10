@@ -3,22 +3,22 @@ version: "3.7"
 services:
   server:
     build:
-      context: ../src/server/
+      context: app/server/
       target: development
     container_name: server
     networks:
       rede-psql:
         ipv4_address: 10.0.0.11
     env_file:
-      - ../src/server/.env
+      - ./app/server/.env
     depends_on:
       - db
     ports:
       - 3000:3000
     volumes:
-      - ../src/server/src:/usr/app/server/src
-    command: [ "npm", "run", "dev" ]
-
+      - ./app/server/src:/usr/app/server/src
+    command: [ "npm", "run", "start" ]
+    profiles: [ "all" ]
   ##
   db:
     image: postgres:alpine
@@ -36,25 +36,25 @@ services:
       POSTGRES_PASSWORD: postgres
     links:
       - pgadmin
-    profiles: [ "database" ]
+    profiles: [ "database", "all" ]
 
   postgres-setup:
     image: postgres:alpine
     container_name: postres-setup
     networks:
       rede-psql:
-        ipv4_address: 10.0.0.20
+        ipv4_address: 10.0.0.30
     depends_on:
       - db
     volumes:
-      - .:/app
+      - ./docker:/app
     entrypoint: [ "sh" ]
     command:
       [
         "-c",
         "sleep 5 && psql 'postgresql://postgres:postgres@10.0.0.20:5432' < /app/createDB.sql"
       ]
-    profiles: [ "database" ]
+    profiles: [ "database", "all" ]
 
   pgadmin:
     image: dpage/pgadmin4
@@ -64,31 +64,32 @@ services:
       rede-psql:
         ipv4_address: 10.0.0.21
     ports:
-      - 8080:80
+      - 5444:5444
     environment:
       PGADMIN_DEFAULT_EMAIL: postgres@email.com
       PGADMIN_DEFAULT_PASSWORD: postgres
-    profiles: [ "database" ]
+    profiles: [ "database", "all" ]
 
   ##
   client:
     build:
-      context: ../src/client
+      context: app/client
       target: development
     container_name: client
     networks:
       rede-psql:
         ipv4_address: 10.0.0.10
     env_file:
-      - ../.env
+      - .env
     depends_on:
       - server
     ports:
       - 3333:3333
     volumes:
       - /app/client/node_modules
-      - ../src/client/:/usr/app/client/
+      - ./app/client/:/usr/app/client/
     command: [ "npm", "run", "start" ]
+    profiles: [ "all" ]
     environment:
       CHOKIDAR_USEPOLLING: "true" # seems like this enables hot reloading https://stackoverflow.com/questions/44643045/running-development-server-with-create-react-app-inside-of-a-docker-container
     links:
