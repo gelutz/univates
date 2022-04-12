@@ -1,0 +1,55 @@
+datasource postgres {
+  provider = "postgresql"
+  url      = env("POSTGRESQL_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  createdAt DateTime @default(now())
+  firstName String?
+  id        String   @id @default(cuid())
+  lastName  String?
+  password  String
+  roles     String[]
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+}
+
+model Task {
+  createdAt   DateTime    @default(now())
+  description String?
+  folder_Id   FolderTask? @relation(fields: [folder_IdId], references: [id])
+  folder_IdId String?
+  groupId     Group       @relation(fields: [groupIdId], references: [id])
+  groupIdId   String
+  id          String      @id @default(cuid())
+  title       String?
+  updatedAt   DateTime    @updatedAt
+}
+
+model Folder {
+  createdAt     DateTime    @default(now())
+  folderTasks   FolderTask? @relation(fields: [folderTasksId], references: [id])
+  folderTasksId String?
+  id            String      @id @default(cuid())
+  name          String      @unique
+  updatedAt     DateTime    @updatedAt
+}
+
+model FolderTask {
+  createdAt DateTime @default(now())
+  folder_Id Folder[]
+  id        String   @id @default(cuid())
+  taskId    Task[]
+  updatedAt DateTime @updatedAt
+}
+
+model Group {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  tasks     Task[]
+  updatedAt DateTime @updatedAt
+}
