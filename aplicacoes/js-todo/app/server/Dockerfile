@@ -13,4 +13,4 @@ FROM prod as development
 
 RUN npm install --quiet --no-progress --only=development
 
-EXPOSE 3333
+EXPOSE 3000

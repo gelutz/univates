@@ -2,7 +2,7 @@ CREATE DATABASE tododb;
 \c tododb
 
 CREATE TABLE IF NOT EXISTS tasks (
-    id int primary key,
+    id serial primary key,
     title varchar(100) NOT NULL,
     description text,
     due_date TIMESTAMP WITH TIME ZONE,

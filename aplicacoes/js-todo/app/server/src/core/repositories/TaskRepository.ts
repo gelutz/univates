@@ -37,8 +37,8 @@ class TaskRepository {
         return result
     }
 
-    static findAll() {
-        return database.query('SELECT * FROM tasks').then(result => result)
+    static async findAll() {
+        return await database.query('SELECT * FROM tasks')
     }
 
     static insert(object) {

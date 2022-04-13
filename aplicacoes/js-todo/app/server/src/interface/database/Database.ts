@@ -1,13 +1,12 @@
-const TError = require("../errors/TError")
-const Postgres = require("./connections/Postgres")
+import { postgres } from "./connections/Postgres"
 
 class Database {
-    client
+    client: typeof postgres
     constructor(client) {
         this.client = client
     }
 
-    query = Postgres.rawQuery
+    query = postgres.rawQuery
 
     select(sql, values) {
         return this.client.query(sql, values).then(result => result)
@@ -21,4 +20,4 @@ class Database {
     }
 }
 
-module.exports = { database: new Database(Postgres) }
+export const database = new Database(postgres)

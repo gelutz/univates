@@ -67,5 +67,5 @@ class Postgres {
 
 }
 
-module.exports = new Postgres()
+export const postgres = new Postgres()
 

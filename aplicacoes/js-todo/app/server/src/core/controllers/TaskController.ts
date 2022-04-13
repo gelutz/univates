@@ -1,17 +1,19 @@
 import { Request, Response } from 'express'
 import TaskRepository from "../repositories/TaskRepository"
 
-type RouteDTO = {
-    request: Request
-    response: Response
-}
-
 class TaskController {
 
-    get({ request, response }: RouteDTO) {
+    async getAll(request: Request, response: Response) {
+        const result = await TaskRepository.findAll()
+        console.log(result);
+
+        return response.status(200).json(result)
+    }
+
+    get(request: Request, response: Response) {
         const { created_at, due_date } = request.body
 
-        const tasks = TaskRepository.findByRange(created_at, due_date).then(tasks => {
+        return TaskRepository.findByRange(created_at, due_date).then(tasks => {
             response.status(200).json({
                 data: tasks
             })
@@ -23,10 +25,10 @@ class TaskController {
 
     }
 
-    post({ request, response }: RouteDTO) {
+    post(request: Request, response: Response) {
         const data = request.body
 
-        TaskRepository.insert({
+        return TaskRepository.insert({
             ...data
         }).then(task => {
             response.status(200).json({
