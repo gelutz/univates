@@ -20,7 +20,7 @@ build:
 
 .PHONY: database
 database:
-	docker-compose -f docker/docker-compose.yml --profile database up -d 
+	docker-compose --profile database up -d 
 
 .PHONY: down
 down:
