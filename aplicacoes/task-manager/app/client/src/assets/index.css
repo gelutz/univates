@@ -1,0 +1,24 @@
+/* Basic Style */
+
+body {
+	background: #fff;
+	color: #333;
+	font-family: Lato, sans-serif;
+	background-color:#e4e4e4;
+}
+
+.container {
+	display: block;
+	width: 40em;
+	margin: 1em auto 10em;
+	background-color:#fff;
+	padding:0px 1em 1em 1em;
+	border-radius:1em
+}
+
+h2 {
+	text-align:center;
+	padding-top:10px;
+	margin-bottom:0px;
+}
+
