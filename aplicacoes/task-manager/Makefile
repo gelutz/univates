@@ -4,29 +4,22 @@ install:
 	for file in $$(ls ./app); do \
         echo "./app/$$file" && cd ./app/$$file && pnpm i && cd ../..; \
     done
-#
-.PHONY: restart
-restart: 
-	docker-compose --profile all restart
 
-.PHONY: build
-build: 
+.PHONY: start
+start: 
 	docker-compose --profile all up --build
+
+.PHONY: down
+down:
+	docker-compose down --rmi all
+#
+
+.PHONY: dev
+dev: 
+	docker-compose -f docker-compose.dev.yml up --build
 
 .PHONY: database
 database:
 	docker-compose --profile database up -d 
 
-.PHONY: down
-down:
-	docker-compose stop
-	docker-compose down --rmi all
-#
-
-.PHONY: local
-local:
-	# yarn up \
-	cd app/client && yarn start; cd ../.. &&	cd app/server && yarn start; cd ../.. && cd app/desktop && yarn start;
-
-#
 

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import TaskRepository from '../../interface/repositories/TaskRepository'
+import TaskRepository from '../repositories/TaskRepository'
 
 class TaskController {
     async findById(request: Request, response: Response) {
@@ -10,6 +10,7 @@ class TaskController {
         }
 
         const task = TaskRepository.find({ id })
+        return response.status(200).json({ task })
     }
 }
 

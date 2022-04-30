@@ -17,5 +17,18 @@ model Tasks {
   deleted_at   DateTime? @db.Date
   completed_at DateTime? @db.Date
 
+  user    Users @relation(fields: [user_id], references: [id])
+  user_id Int
   @@map("tasks")
+}
+
+model Users {
+  id       Int    @id @default(autoincrement())
+  login    String @db.VarChar(10)
+  name     String @db.VarChar(100)
+  email    String @db.VarChar(200)
+  password String @db.VarChar(100)
+
+  Tasks Tasks[]
+  @@map("users")
 }

@@ -1,0 +1,53 @@
+version: "3.7"
+
+services:
+
+  db:
+    image: postgres:alpine
+    container_name: db
+    restart: unless-stopped
+    user: postgres
+    ports:
+      - 5433:5432
+    volumes:
+      - data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+  ##
+
+  server:
+    image: node:12-alpine
+    container_name: server
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+    volumes:
+      - ./app/server:/usr/app/server
+    command: [ "sh", "-c", "cd /usr/app/server && yarn dev" ]
+  # ##
+  # client:
+  #   build:
+  #     context: app/client
+  #     target: development
+  #   container_name: client
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - server
+  #   ports:
+  #     - 3333:3333
+  #   volumes:
+  #     - /app/client/node_modules
+  #     - ./app/client/:/usr/app/client/
+  #   command: [ "npm", "run", "start" ]
+  #   profiles: [ "all" ]
+  #   environment:
+  #     CHOKIDAR_USEPOLLING: "true" # seems like this enables hot reloading https://stackoverflow.com/questions/44643045/running-development-server-with-create-react-app-inside-of-a-docker-container
+  #   links:
+  #     - server
+
+volumes:
+  postgres:
+
+  data:
