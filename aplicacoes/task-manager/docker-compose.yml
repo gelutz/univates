@@ -6,8 +6,6 @@ services:
     image: postgres:alpine
     container_name: db
     restart: unless-stopped
-    networks:
-      - db_network
     user: postgres
     ports:
       - 5433:5432
@@ -51,7 +49,3 @@ volumes:
   postgres:
 
   data:
-
-
-networks:
-  db_network:

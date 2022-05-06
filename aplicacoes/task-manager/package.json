@@ -6,11 +6,5 @@
         "@todo/app": "link:app/app",
         "@todo/client": "link:app/client",
         "@todo/server": "link:app/server"
-    },
-    "scripts": {
-        "start": "make install && make start",
-        "up": "docker compose -f docker/docker-compose.yml up -d",
-        "down": "docker compose -f docker/docker-compose.yml down --volumes",
-        "logs": "docker compose -f docker/docker-compose.yml logs -f"
     }
 }

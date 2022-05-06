@@ -9,7 +9,8 @@ install:
 start:
 	make install; \
 	docker-compose up --build -d; \
-	cd app/desktop && yarn start
+	cd app/desktop && yarn start & \
+	docker-compose logs -f;
 
 down:
 	docker-compose down -v --rmi local
