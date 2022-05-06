@@ -14,7 +14,7 @@
         "typescript": "^4.6.3"
     },
     "scripts": {
-        "prestart": "yarn prisma migrate dev -n start",
+        "prestart": "yarn prisma migrate dev -n start --schema src/entities/schema.prisma",
         "start": "ts-node src/index.ts",
         "dev": "ts-node-dev src/index.ts",
         "test": "jest"

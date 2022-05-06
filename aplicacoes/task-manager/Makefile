@@ -1,4 +1,4 @@
-.PHONY: install
+
 install:
 	pnpm install; \
 	for file in $$(ls ./app); do \
@@ -11,11 +11,16 @@ start:
 	docker-compose up --build -d; \
 	cd app/desktop && yarn start
 
-.PHONY: down
 down:
 	docker-compose down -v --rmi local
 #
 
-.PHONY: dev
+
 dev: 
 	docker-compose -f docker-compose.dev.yml up --build
+#
+
+migrate: 
+	cd app/server/docker && 
+#
+

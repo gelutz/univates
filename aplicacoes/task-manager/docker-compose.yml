@@ -6,6 +6,8 @@ services:
     image: postgres:alpine
     container_name: db
     restart: unless-stopped
+    networks:
+      - db_network
     user: postgres
     ports:
       - 5433:5432
@@ -40,7 +42,6 @@ services:
   #     - /app/client/node_modules
   #     - ./app/client/:/usr/app/client/
   #   command: [ "npm", "run", "start" ]
-  #   profiles: [ "all" ]
   #   environment:
   #     CHOKIDAR_USEPOLLING: "true" # seems like this enables hot reloading https://stackoverflow.com/questions/44643045/running-development-server-with-create-react-app-inside-of-a-docker-container
   #   links:
@@ -50,3 +51,7 @@ volumes:
   postgres:
 
   data:
+
+
+networks:
+  db_network:
