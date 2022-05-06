@@ -6,20 +6,16 @@ install:
     done
 
 .PHONY: start
-start: 
-	docker-compose --profile all up --build
+start:
+	make install; \
+	docker-compose up --build -d; \
+	cd app/desktop && yarn start
 
 .PHONY: down
 down:
-	docker-compose down --rmi all
+	docker-compose down -v --rmi local
 #
 
 .PHONY: dev
 dev: 
 	docker-compose -f docker-compose.dev.yml up --build
-
-.PHONY: database
-database:
-	docker-compose --profile database up -d 
-
-

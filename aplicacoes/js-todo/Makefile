@@ -15,7 +15,8 @@ restart:
 	docker-compose --profile all restart
 
 .PHONY: build
-build: 
+build:
+	make install \
 	docker-compose --profile all up --build
 
 .PHONY: database

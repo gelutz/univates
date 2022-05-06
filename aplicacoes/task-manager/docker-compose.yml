@@ -13,27 +13,7 @@ services:
       - data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: postgres
-    # links:
-    #   - pgadmin
-    profiles: [ "database", "all" ]
   ##
-  # db-setup:
-  #   image: node:12-alpine
-  #   container_name: server_db_setup
-  #   depends_on:
-  #     - db
-  #     - server
-  #   volumes:
-  #     - ./app/server/prisma:/app/prisma
-  #     - ./app/server/node_modules:/app/node_modules
-  #     - ./app/server/.env:/app/.env
-  #   restart: "no"
-  #   entrypoint:
-  #     [
-  #       "sh",
-  #       "-c",
-  #       "sleep 5 && npx prisma migrate dev -n setup --schema /app/prisma/schema.prisma" # "sleep 5 && ls -la"
-  #     ]
   server:
     image: node:12-alpine
     container_name: server
@@ -43,7 +23,6 @@ services:
       - 3000:3000
     volumes:
       - ./app/server:/usr/app/server
-    profiles: [ "all" ]
     command: [ "sh", "-c", "cd /usr/app/server && yarn start" ]
   # ##
   # client:
@@ -66,21 +45,6 @@ services:
   #     CHOKIDAR_USEPOLLING: "true" # seems like this enables hot reloading https://stackoverflow.com/questions/44643045/running-development-server-with-create-react-app-inside-of-a-docker-container
   #   links:
   #     - server
-  # ##
-  # pgadmin:
-  #   image: dpage/pgadmin4
-  #   container_name: postgres-pgadmin
-  #   restart: unless-stopped
-  #   # networks:
-  #   #   rede-psql:
-  #   #     ipv4_address: 10.0.0.21
-  #   ports:
-  #     - 5444:5444
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: postgres@email.com
-  #     PGADMIN_DEFAULT_PASSWORD: postgres
-  #   profiles: [ "database", "all" ]
-  # ##
 
 volumes:
   postgres:

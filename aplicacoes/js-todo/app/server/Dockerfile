@@ -14,3 +14,4 @@ FROM prod as development
 RUN npm install --quiet --no-progress --only=development
 
 EXPOSE 3000
+CMD [ "npm", "run", "start" ]
